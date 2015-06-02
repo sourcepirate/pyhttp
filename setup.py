@@ -23,7 +23,5 @@ setup(
     ],
     include_package_data=True,
     license='MIT License',
-    author_email='plasmashadowx@gmail.com',
-
-
+    author_email='plasmashadowx@gmail.com'
 )
