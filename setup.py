@@ -22,6 +22,5 @@ setup(
         'Intended Audience :: Developers'
     ],
     include_package_data=True,
-    license='MIT License',
-    author_email='plasmashadowx@gmail.com'
+    license='MIT License'
 )
