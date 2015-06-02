@@ -12,4 +12,4 @@ class TestRequest(unittest.TestCase):
 
     def test_get(self):
         response = self.request.get()
-        self.assertEqual(response.status, 302)
+        self.assertEqual(response.status, 200)

@@ -4,7 +4,7 @@ def Readme():
     return open("README.md", "r").read()
 
 setup(
-    name = 'PyHttp',
+    name = 'pyrequest',
     packages = ['pyhttp'],
     version = '0.1',
     description = Readme(),
@@ -14,7 +14,5 @@ setup(
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 2'
-    ],
-    test_suite=['tests'],
-    install_requires=[]
+    ]
 )

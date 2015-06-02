@@ -2,6 +2,10 @@
 
 Very Minimal HTTP wrapper for Python.
 
+##installation
+```
+pip install pyrequest
+```
 
 ##Usage
 
