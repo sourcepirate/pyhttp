@@ -3,6 +3,7 @@ __author__ = 'plasmashadow'
 from Response import Response
 import urllib3
 import json
+import certifi
 
 
 
@@ -33,7 +34,13 @@ class Request(object):
     def __init__(self, url, **kwargs):
 
         self._url = url
-        self.http = urllib3.PoolManager(timeout=Request._default_time_out)
+        ssl = kwargs.pop('ssl', False)
+        if not ssl:
+            self.http = urllib3.PoolManager(timeout=Request._default_time_out)
+        else:
+            self.http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED',
+                                            ca_certs=certifi.where(),
+                                            timeout=Request._default_time_out)
         self._header = {}
 
     @property

@@ -19,7 +19,7 @@ setup(
         'Programming Language :: Python :: 2',
         'Intended Audience :: Developers'
     ],
-    install_requires = ['urllib3'],
+    install_requires = ['urllib3', 'certifi'],
     include_package_data=True,
     license='MIT License',
 )
