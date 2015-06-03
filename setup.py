@@ -19,6 +19,7 @@ setup(
         'Programming Language :: Python :: 2',
         'Intended Audience :: Developers'
     ],
+    install_requires = ['urllib3'],
     include_package_data=True,
-    license='MIT License'
+    license='MIT License',
 )

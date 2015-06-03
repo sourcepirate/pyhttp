@@ -1,54 +1,63 @@
 __author__ = 'plasmashadow'
 
-import httplib
 from Response import Response
-import urllib
+import urllib3
+import json
 
-class Request(object):
 
-    def __init__(self, *args, **kwargs):
+
+class HttpTimeout(urllib3.Timeout):
+
+    connect_time_out = 10
+    """
+       A simple time out for http request
+    """
+    def __init__(self, read_time_out):
         """
-        Constructor is the request object
-        :param args:
-        :param kwargs:
+        Constructor for HttpTimeout
+        default connection timeout as 10 seconds
+        :param read_time_out: time_out for reading
         :return:
         """
-        self.url = args[0]
-        self.ssl = kwargs.pop("ssl", False)
-        self.port = kwargs.pop("port", 80)
-        self._headers = {}
-        if self.ssl:
-            self._connection = httplib.HTTPSConnection(self.url, **kwargs)
-        else:
-            self._connection = httplib.HTTPConnection(self.url, **kwargs)
+        super(HttpTimeout, self).__init__(connect=HttpTimeout.connect_time_out, read=read_time_out)
 
+
+
+
+class Request(object):
+    """
+    Http Request object for Representing http reques
+    """
+    _default_time_out = HttpTimeout(10)
+
+    def __init__(self, url, **kwargs):
+
+        self._url = url
+        self.http = urllib3.PoolManager(timeout=Request._default_time_out)
+        self._header = {}
 
     @property
-    def header(self):
-        return self._headers
+    def headers(self):
+        return self._header
 
-    @header.setter
-    def header(self, value):
-        self._headers.update(**value)
+    @headers.setter
+    def headers(self, value):
+        self._header.update(urllib3.make_headers(**value))
 
-    @property
-    def connection(self):
-        return self._connection
-
-    def _do_method(self, method, params=None):
-        data = urllib.urlencode(params) if params else None
-        self._connection.request(method=method, url="/", body=None, headers=self.header)
-        response = self.connection.getresponse()
+    def get(self, params={}):
+        response = self.http.urlopen('GET', self._url, body=json.dumps(params), headers=self.headers)
         return Response(response)
 
-    def get(self, params=None):
-        return self._do_method("GET", params)
+    def post(self, params={}):
+        response = self.http.urlopen('POST', self._url, body=json.dumps(params), headers=self.headers)
+        return Response(response)
 
-    def post(self, params=None):
-        return self._do_method("POST", params)
-
-    def put(self, params=None):
-        return self._do_method("PUT", params)
+    def put(self, params={}):
+        response = self.http.urlopen('PUT', self._url, body=json.dumps(params), headers=self.headers)
+        return Response(response)
 
     def delete(self):
-        return self._do_method("DELETE")
+        response = self.http.urlopen('DELETE', self._url)
+        return Response(response)
+
+

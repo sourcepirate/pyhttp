@@ -8,8 +8,8 @@ from pyhttp import Request
 class TestRequest(unittest.TestCase):
 
     def setUp(self):
-        self.request = Request("www.google.com")
+        self.request = Request("http://google.com")
 
     def test_get(self):
         response = self.request.get()
-        self.assertEqual(response.status, 200)
+        self.assertEqual(response.status, 400)
