@@ -5,6 +5,7 @@ python:
 install:
 - pip install six
 - pip install python-coveralls
+- pip install urllib3
 script: nosetests
 after_success:
 - coveralls

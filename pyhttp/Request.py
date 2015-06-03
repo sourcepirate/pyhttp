@@ -38,22 +38,35 @@ class Request(object):
 
     @property
     def headers(self):
-        return self._header
+        return self._header if self._header else None
 
     @headers.setter
     def headers(self, value):
-        self._header.update(urllib3.make_headers(**value))
+        try:
+            self._header.update(urllib3.make_headers(**value))
+        except Exception as e:
+            self._header.update(value)
+
+
+    @staticmethod
+    def get_params(params):
+        if not params:
+            return None
+        return json.dumps(params)
 
     def get(self, params={}):
-        response = self.http.urlopen('GET', self._url, body=json.dumps(params), headers=self.headers)
+        body = Request.get_params(params)
+        response = self.http.urlopen('GET', self._url, body=body, headers=self.headers)
         return Response(response)
 
     def post(self, params={}):
-        response = self.http.urlopen('POST', self._url, body=json.dumps(params), headers=self.headers)
+        body = Request.get_params(params)
+        response = self.http.urlopen('POST', self._url, body=body, headers=self.headers)
         return Response(response)
 
     def put(self, params={}):
-        response = self.http.urlopen('PUT', self._url, body=json.dumps(params), headers=self.headers)
+        body = Request.get_params(params)
+        response = self.http.urlopen('PUT', self._url, body=body, headers=self.headers)
         return Response(response)
 
     def delete(self):

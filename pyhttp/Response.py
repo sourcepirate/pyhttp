@@ -1,7 +1,7 @@
 __author__ = 'plasmashadow'
 
 
-import urllib3
+import urllib3, json
 
 class Response(object):
 
@@ -18,3 +18,14 @@ class Response(object):
     @property
     def status(self):
         return self._status
+
+    @property
+    def content(self):
+        return self.data.data
+
+    @property
+    def json(self):
+        try:
+            return json.loads(self.data.data)
+        except Exception as e:
+            raise ValueError("Error opening the json response")

@@ -9,7 +9,7 @@ def Readme():
 setup(
     name='pyrequest',
     packages=['pyhttp'],
-    version='0.3',
+    version='0.4',
     description='Pythonic way of HTTP request',
     author='plasmashadow',
     author_email='plasmashadowx@gmail.com',
