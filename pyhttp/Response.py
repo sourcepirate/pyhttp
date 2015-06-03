@@ -1,7 +1,8 @@
 __author__ = 'plasmashadow'
 
 
-import urllib3, json
+import urllib3
+import json
 
 class Response(object):
 

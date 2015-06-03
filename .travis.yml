@@ -6,7 +6,10 @@ install:
 - pip install six
 - pip install python-coveralls
 - pip install urllib3
+- pip install certifi
+
 script: nosetests
+
 after_success:
 - coveralls
 deploy:
