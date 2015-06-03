@@ -2,6 +2,12 @@
 
 Very Minimal HTTP wrapper for Python.
 
+[![Build Status](https://travis-ci.org/plasmashadow/pyhttp.svg?branch=master)](https://travis-ci.org/plasmashadow/pyhttp)
+[![PyPI version](https://badge.fury.io/py/mondb.svg)](http://badge.fury.io/py/pyrequest)
+[![PyPI](https://img.shields.io/pypi/dm/mondb.svg)](https://pypi.python.org/pypi/pyrequest)
+[![Code Health](https://landscape.io/github/plasmashadow/pyhttp/master/landscape.svg?style=flat)](https://landscape.io/github/plasmashadow/pyhttp/master)
+
+
 ##installation
 ```
 pip install pyrequest
