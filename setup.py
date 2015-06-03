@@ -9,8 +9,9 @@ def Readme():
 setup(
     name='pyrequest',
     packages=['pyhttp'],
-    version='0.4',
+    version='0.5',
     description='Pythonic way of HTTP request',
+    long_description = Readme(),
     author='plasmashadow',
     author_email='plasmashadowx@gmail.com',
     url='https://github.com/plasmashadow/pyhttp.git',
